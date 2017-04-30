@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>My Account</h1>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.email) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.phoneNumber) }}
+            {{ form_row(form.country) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.postcode) }}
+            {{ form_row(form.street) }}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+
+    {% block customer_orders %}
+        <h1>My Orders</h1>
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="80">Order Id</th>
+                    <th width="150">Date</th>
+                    <th width="150">Ship To</th>
+                    <th width="150">Order Total</th>
+                    <th width="150">Status</th>
+                    <th width="150">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in customer_orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.ship_to }}</td>
+                        <td>{{ order.order_total }} лв</td>
+                        <td>{{ order.status }}</td>
+                        <td>
+                            {% for action in order.actions %}
+                                <a class="button" href="{{ action.path }}">{{ action.label }}</a>&emsp;
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+
+{% endblock %}

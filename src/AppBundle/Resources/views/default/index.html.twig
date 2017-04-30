@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Main{% endblock %}
+
+{% block body %}
+    <div class="col-md-12">
+        <div class="row">
+            {% if productsBestsellers %}
+            <div class="row">
+                <h1>Best Sellers</h1>
+                {% for product in productsBestsellers.getItems() %}
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <a href="{{ product.path }}">
+                                    <img class="img-fluid img-thumbnail"
+                                         src="{{ asset('uploads/catalog_images/' ~ product.img) }}"
+                                         alt="">
+                                </a>
+                                <h4><a href="{{ product.path }}">{{ product.name }}</a></h4>
+                                <h4>{{ product.price }} лв</h4>
+                                {% if product.qty > 0 %}
+                                    <a class="btn btn-sm btn-success" href="{{ addToCartUrl.get(product.id) }}">
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                                    </a>
+                                {% else %}
+                                    OUT OF STOCK
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <br><br>
+            <div class="row">
+                {% if productsOnsale %}
+                    <h1>On Sale</h1>
+                    {% for product in productsOnsale.getItems() %}
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <a href="{{ product.path }}">
+                                        <img class="img-fluid img-thumbnail"
+                                             src="{{ asset('uploads/catalog_images/' ~ product.img) }}"
+                                             alt="">
+                                    </a>
+                                    <h4><a class="text-center" href="{{ product.path }}">{{ product.name }}</a></h4>
+                                    <h4>{{ product.price }} лв</h4>
+                                    {% if product.qty > 0 %}
+                                        <a class="btn btn-sm btn-success" href="{{ addToCartUrl.get(product.id) }}">
+                                            <i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                                        </a>
+                                    {% else %}
+                                        OUT OF STOCK
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

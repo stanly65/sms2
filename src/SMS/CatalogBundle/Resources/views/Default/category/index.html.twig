@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Categories list</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                <td>{{ category.title }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    <a href="{{ asset('uploads/catalog_images/' ~ category.image) }}" data-lity>
+                        {{ category.image }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('category_show', { 'id': category.id }) }}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    &emsp;
+                    <a href="{{ path('category_edit', { 'id': category.id }) }}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="row narrow">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="{{ path('category_new') }}">Create a new category</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

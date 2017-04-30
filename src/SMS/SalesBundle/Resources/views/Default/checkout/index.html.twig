@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block body %}
+    <h1>Checkout</h1>
+    <div class="row">
+        <form action="{{ path('sms_sales_checkout_payment') }}" method="post" id="shipping_form">
+            <div class="col-md-4">
+                <fieldset>
+                    <legend>Shipping Address</legend>
+                    {{ form_widget(shipping_address_form) }}
+                </fieldset>
+            </div>
+            <div class="col-md-4">
+                <fieldset>
+                    <legend>Shipping Methods</legend>
+                    {% for method in shipping_methods %}
+                        {% set shipment = method.getInfo()['shipment'] %}
+                        <b>{{ shipment.title }}</b>
+                        <b>({{ shipment.delivery_options.price }} лв)</b>
+                        <input type="radio" checked name="shipment_method"
+                               value="{{ shipment.code }}____{{ shipment.delivery_options.code }}____{{ shipment.delivery_options.price }}">
+                        <br>
+                    {% endfor %}
+                </fieldset>
+            </div>
+        </form>
+        <div class="col-md-4">
+            {% include 'SMSSalesBundle:Default:checkout/order_sumarry.html.twig' %}
+            <p>Cart Subtotal: {{ cart_subtotal }} лв</p>
+            <a class="btn btn-sm btn-success" id="shipping_form_submit" href="#">
+            <i class="fa fa-usd" aria-hidden="true"></i> Next
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var form = document.getElementById('shipping_form');
+        document.getElementById('shipping_form_submit').addEventListener('click', function () {
+            form.submit();
+        });
+    </script>
+{% endblock %}
+

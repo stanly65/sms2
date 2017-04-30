@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="sms_sales.add_to_cart_url" class="SMS\SalesBundle\Service\AddToCartUrl">
+            <argument type="service" id="router"/>
+        </service>
+
+        <service id="sms_sales.checkout_menu" class="SMS\SalesBundle\Service\CheckoutMenu">
+             <argument type="service" id="doctrine.orm.entity_manager"/>
+             <argument type="service" id="security.token_storage"/>
+             <argument type="service" id="router"/>
+         </service>
+
+        <service id="sms_sales.shipment" class="SMS\SalesBundle\Service\Shipment">
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="sms_sales.payment" class="SMS\SalesBundle\Service\Payment">
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="sms_sales.customer_orders" class="SMS\SalesBundle\Service\CustomerOrders">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="security.token_storage"/>
+            <argument type="service" id="router"/>
+        </service>
+
+        <service id="sms_sales.bestsellers" class="SMS\SalesBundle\Service\BestSellers">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="router"/>
+        </service>
+
+    </services>
+
+</container>

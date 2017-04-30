@@ -1,0 +1,62 @@
+sms_sales_sales_order:
+    resource: "@SMSSalesBundle/Controller/SalesOrderController.php"
+    type: annotation
+
+sms_sales:
+    resource: "@SMSSalesBundle/Resources/config/routing.xml"
+    prefix:   /sales/
+
+sms_shipment:
+    resource: "@SMSShipmentBundle/Resources/config/routing.xml"
+    prefix:   /shipment/
+
+sms_payment_card:
+    resource: "@SMSPaymentBundle/Controller/CardController.php"
+    type:     annotation
+
+sms_payment:
+    resource: "@SMSPaymentBundle/Resources/config/routing.xml"
+    prefix:   /payment/
+
+sms_customer_customer:
+    resource: "@SMSCustomerBundle/Controller/CustomerController.php"
+    type:     annotation
+
+sms_customer:
+    resource: "@SMSCustomerBundle/Resources/config/routing.xml"
+    prefix:   /customer/
+
+sms_catalog_product:
+    resource: "@SMSCatalogBundle/Controller/ProductController.php"
+    type:     annotation
+
+sms_catalog_category:
+    resource: "@SMSCatalogBundle/Controller/CategoryController.php"
+    type:     annotation
+
+sms_catalog:
+    resource: "@SMSCatalogBundle/Resources/config/routing.xml"
+    prefix:   /catalog/
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+login:
+    path: /login
+
+register:
+    path: /register
+
+logout:
+    path: /logout
+
+manager:
+    path: /manager

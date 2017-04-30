@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order details{% endblock %}
+
+{% block body %}
+    <h1>Order details</h1>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ salesOrder.id }}</td>
+            </tr>
+            <tr>
+                <th>Items price</th>
+                <td>{{ salesOrder.itemsPrice }}</td>
+            </tr>
+            <tr>
+                <th>Shipment price</th>
+                <td>{{ salesOrder.shipmentPrice }}</td>
+            </tr>
+            <tr>
+                <th>Total price</th>
+                <td>{{ salesOrder.totalPrice }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ salesOrder.status }}</td>
+            </tr>
+            <tr>
+                <th>Payment method</th>
+                <td>{{ salesOrder.paymentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Shipment method</th>
+                <td>{{ salesOrder.shipmentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Created at</th>
+                <td>{% if salesOrder.createdAt %}{{ salesOrder.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Customer email</th>
+                <td>{{ salesOrder.userEmail }}</td>
+            </tr>
+            <tr>
+                <th>First name</th>
+                <td>{{ salesOrder.userFirstName }}</td>
+            </tr>
+            <tr>
+                <th>Last name</th>
+                <td>{{ salesOrder.userLastName }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ salesOrder.addressCountry }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ salesOrder.addressCity }}</td>
+            </tr>
+            <tr>
+                <th>Postcode</th>
+                <td>{{ salesOrder.addressPostcode }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ salesOrder.addressStreet }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ salesOrder.addressTelephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="narrow row">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('salesorder_index') }}">Back to the list</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="btn btn-primary" href="{{ path('salesorder_edit', { 'id': salesOrder.id }) }}">Change status</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

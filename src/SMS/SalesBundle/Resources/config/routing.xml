@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="sms_sales_cart" path="/cart/">
+        <default key="_controller">SMSSalesBundle:Cart:index</default>
+    </route>
+
+    <route id="sms_sales_cart_update" path="/cart/update">
+        <default key="_controller">SMSSalesBundle:Cart:update</default>
+    </route>
+
+    <route id="sms_sales_cart_add" path="/cart/add/{id}">
+        <default key="_controller">SMSSalesBundle:Cart:add</default>
+    </route>
+
+    <route id="sms_sales_checkout" path="/checkout/">
+        <default key="_controller">SMSSalesBundle:Checkout:index</default>
+    </route>
+
+    <route id="sms_sales_checkout_payment" path="/checkout/payment">
+        <default key="_controller">SMSSalesBundle:Checkout:payment</default>
+    </route>
+
+    <route id="sms_sales_checkout_process" path="/checkout/process">
+        <default key="_controller">SMSSalesBundle:Checkout:process</default>
+    </route>
+
+    <route id="sms_sales_checkout_success" path="/checkout/success">
+        <default key="_controller">SMSSalesBundle:Checkout:success</default>
+    </route>
+    
+    <route id="sms_sales_order_cancel" path="/order/cancel/{id}">
+        <default key="_controller">SMSSalesBundle:SalesOrder:cancel</default>
+    </route>
+
+    <route id="sms_sales_order_print" path="/order/print/{id}">
+        <default key="_controller">SMSSalesBundle:SalesOrder:print</default>
+    </route>
+
+</routes>

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="sms_catalog.image_uploader" class="SMS\CatalogBundle\Service\Upload\FileUploader">
+            <argument>%sms_catalog_images_directory%</argument>
+        </service>
+
+        <service id="sms_catalog.category_menu" class="SMS\CatalogBundle\Service\Menu\Category">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="router"/>
+        </service>
+
+        <service id="sms_catalog.onsale" class="SMS\CatalogBundle\Service\Block\OnSale">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="router"/>
+        </service>
+
+    </services>
+
+</container>

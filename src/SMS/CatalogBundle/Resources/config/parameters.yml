@@ -1,0 +1,2 @@
+parameters:
+    sms_catalog_images_directory: "%kernel.root_dir%/../web/uploads/catalog_images"

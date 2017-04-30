@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Products list</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Image</th>
+            <th>Onsale</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.qty }}</td>
+                <td>
+                    <a href="{{ asset('uploads/catalog_images/' ~ product.image) }}" data-lity>
+                        {{ product.image }}
+                    </a>
+                </td>
+                <td>{% if product.onsale %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <a href="{{ path('product_show', { 'id': product.id }) }}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    &emsp;
+                    <a href="{{ path('product_edit', { 'id': product.id }) }}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="row narrow">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="{{ path('product_new') }}">Create a new product</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

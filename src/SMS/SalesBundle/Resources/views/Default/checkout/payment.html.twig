@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block body %}
+    <h1>Checkout</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{{ path('sms_sales_checkout_process') }}" method="post" id="payment_form">
+                <fieldset>
+                    <legend>Payment Methods</legend>
+                    {% for method in payment_methods %}
+                        {% set payment = method.getInfo()['payment'] %}
+                        <input type="radio" checked name="payment_method"
+                               value="{{ payment.code }}"> <b>{{ payment.title }}</b>
+                        {% if payment['form'] is defined %}
+                            <div id="{{ payment.code }}_form">
+                                {{ form_widget(payment['form']) }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-4">
+            {% include 'SMSSalesBundle:Default:checkout/order_sumarry.html.twig' %}
+            <p>Cart Subtotal: {{ cart_subtotal }} лв</p>
+            <p>Delivery Subtotal: {{ delivery_subtotal }} лв</p>
+            <p>Order Total: {{ order_total }} лв</p>
+            <a class="btn btn-sm btn-success" id="payment_form_submit" href="#">
+                <i class="fa fa-check" aria-hidden="true"></i> Place Order
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var form = document.getElementById('payment_form');
+        document.getElementById('payment_form_submit').addEventListener('click', function () {
+            form.submit();
+        });
+    </script>
+{% endblock %}
